@@ -1,0 +1,45 @@
+<?php
+
+
+
+// try{
+//     $connect = new PDO("mysql:dbname=youtube_weblessions_chat;host=localhost", "root", "");
+//     echo 'Success';
+//     $sql = 'SELECT * FROM login';
+
+//     $result = $connect->query($sql);
+// // var_dump($result);
+// $k = $result->fetch();
+//     print_r($k);
+
+
+// } catch(PDOException $e)
+// {
+//     echo 'Connection Failed ' . $e->getMessage();
+// }
+
+
+$dsn = "mysql:host=localhost; dbname=youtube_weblessions_chat";
+$db_user = "root";
+$db_password = "";
+
+try{
+    $conn = new PDO($dsn, $db_user, $db_password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    echo 'connected <hr><br>';
+} catch(PDOException $e) {
+    echo 'Connection failed ' . $e->getMessage();
+}
+
+    $sql = 'SELECT * FROM login';
+
+    $result = $conn->query($sql);
+    
+    // $k = $result->fetch();
+    // print_r($k);
+
+    foreach ($result as $key => $value) {
+        echo $value['username'];
+        // print_r($value);
+    }
